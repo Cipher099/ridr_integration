@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import CoreLocation
-import GEOSwift
 
 public class Helper {
     /**

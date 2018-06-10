@@ -10,17 +10,16 @@ import Foundation
 import CoreLocation
 import GEOSwift
 
-
 class Route: NSObject {
     
-    let LOCATION_FUZZY_EQUAL_THRESHOLD_DEGREES: Double = 0.00001
-    let CLOCKWISE_DEGREES: Double = 90.0
-    let COUNTERCLOCKWISE_DEGREES: Double = -90.0
-    let CORRECTION_THRESHOLD_METERS: Double = 1000
-    let REVERSE_DEGREES: Double = 180
-    let LOST_THRESHOLD_METERS: Double = 50
-    let CLOSE_TO_DESTINATION_THRESHOLD_METERS: Double = 20
-    let CLOSE_TO_NEXT_LEG_THRESHOLD_METERS: Double = 5
+    private let LOCATION_FUZZY_EQUAL_THRESHOLD_DEGREES: Double = 0.00001
+    private let CLOCKWISE_DEGREES: Double = 90.0
+    private let COUNTERCLOCKWISE_DEGREES: Double = -90.0
+    private let CORRECTION_THRESHOLD_METERS: Double = 1000
+    private let REVERSE_DEGREES: Double = 180
+    private let LOST_THRESHOLD_METERS: Double = 50
+    private let CLOSE_TO_DESTINATION_THRESHOLD_METERS: Double = 20
+    private let CLOSE_TO_NEXT_LEG_THRESHOLD_METERS: Double = 5
     
     /// The start location of the route
     fileprivate var startLocation: CLLocation
@@ -134,7 +133,7 @@ class Route: NSObject {
         if (closeToDestination(location: currentLocation)) {
             let destination = routeData![sizeOfPoly! - 1]
 //            updateDistanceTravelled(destination)
-            return currentLocation // destination.locations
+            return destination.location
         }
         
         // snap currentNode's location to a location along the route, if we are close
@@ -301,7 +300,7 @@ class Route: NSObject {
      * leg, then we are close to the next leg
      */
     private func closeToNextLeg(location: CLLocation, legDistance: Double) -> Bool {
-        return location.distance(from: lastLocation!) > legDistance - CLOSE_TO_NEXT_LEG_THRESHOLD_METERS
+        return location.distance(from: lastLocation!) > (legDistance - CLOSE_TO_NEXT_LEG_THRESHOLD_METERS)
     }
     
     /**
