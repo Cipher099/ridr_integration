@@ -1,0 +1,644 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		24B9064C6C8D9EB29AF3DEC9 /* Pods_RIDRIntegrationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BD7B3196705459522732B5A /* Pods_RIDRIntegrationTests.framework */; };
+		B40A4DDB20CC045500D8F90F /* RIDRIntegration.podspec in Resources */ = {isa = PBXBuildFile; fileRef = B40A4DDA20CC045500D8F90F /* RIDRIntegration.podspec */; };
+		B40A4DDD20CC080C00D8F90F /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = B40A4DDC20CC080C00D8F90F /* Podfile */; };
+		B40A4DDF20CC17D800D8F90F /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40A4DDE20CC17D800D8F90F /* Route.swift */; };
+		B40A4DE220CC1A8800D8F90F /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40A4DE120CC1A8800D8F90F /* Node.swift */; };
+		B468F61220C8512000BBA20D /* RIDRIntegration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B468F60820C8512000BBA20D /* RIDRIntegration.framework */; };
+		B468F61720C8512000BBA20D /* RIDRIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B468F61620C8512000BBA20D /* RIDRIntegrationTests.swift */; };
+		B468F61920C8512000BBA20D /* RIDRIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = B468F60B20C8512000BBA20D /* RIDRIntegration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B468F62620C851AC00BBA20D /* Integration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B468F62520C851AC00BBA20D /* Integration.swift */; };
+		B468F62820C851D100BBA20D /* Initialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = B468F62720C851D100BBA20D /* Initialization.swift */; };
+		B468F62C20C8530D00BBA20D /* RIDRLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B468F62B20C8530D00BBA20D /* RIDRLocationManager.swift */; };
+		B468F62E20C8538100BBA20D /* RIDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = B468F62D20C8538100BBA20D /* RIDR.swift */; };
+		B468F63120C853D000BBA20D /* GeoKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = B468F63020C853D000BBA20D /* GeoKeys.swift */; };
+		B468F63320C8582D00BBA20D /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B468F63220C8582D00BBA20D /* Helpers.swift */; };
+		D6306B9DAF619F8764B8A892 /* Pods_RIDRIntegration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D20035F6B90DA66B25A69B9 /* Pods_RIDRIntegration.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B468F61320C8512000BBA20D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B468F5FF20C8512000BBA20D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B468F60720C8512000BBA20D;
+			remoteInfo = RIDRIntegration;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1BD7B3196705459522732B5A /* Pods_RIDRIntegrationTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RIDRIntegrationTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D20035F6B90DA66B25A69B9 /* Pods_RIDRIntegration.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RIDRIntegration.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E082FE8D8548F7AEEB22658 /* Pods-RIDRIntegrationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RIDRIntegrationTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RIDRIntegrationTests/Pods-RIDRIntegrationTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9CC0640A98905FD0D2E06FE2 /* Pods-RIDRIntegration.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RIDRIntegration.release.xcconfig"; path = "Pods/Target Support Files/Pods-RIDRIntegration/Pods-RIDRIntegration.release.xcconfig"; sourceTree = "<group>"; };
+		B40A4DDA20CC045500D8F90F /* RIDRIntegration.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = RIDRIntegration.podspec; sourceTree = SOURCE_ROOT; };
+		B40A4DDC20CC080C00D8F90F /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		B40A4DDE20CC17D800D8F90F /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		B40A4DE120CC1A8800D8F90F /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
+		B468F60820C8512000BBA20D /* RIDRIntegration.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RIDRIntegration.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B468F60B20C8512000BBA20D /* RIDRIntegration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RIDRIntegration.h; sourceTree = "<group>"; };
+		B468F60C20C8512000BBA20D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B468F61120C8512000BBA20D /* RIDRIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RIDRIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B468F61620C8512000BBA20D /* RIDRIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RIDRIntegrationTests.swift; sourceTree = "<group>"; };
+		B468F61820C8512000BBA20D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B468F62520C851AC00BBA20D /* Integration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Integration.swift; sourceTree = "<group>"; };
+		B468F62720C851D100BBA20D /* Initialization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Initialization.swift; sourceTree = "<group>"; };
+		B468F62B20C8530D00BBA20D /* RIDRLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RIDRLocationManager.swift; sourceTree = "<group>"; };
+		B468F62D20C8538100BBA20D /* RIDR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RIDR.swift; sourceTree = "<group>"; };
+		B468F63020C853D000BBA20D /* GeoKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoKeys.swift; sourceTree = "<group>"; };
+		B468F63220C8582D00BBA20D /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		F3F0E8CE94072EEC2FEA1B53 /* Pods-RIDRIntegration.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RIDRIntegration.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RIDRIntegration/Pods-RIDRIntegration.debug.xcconfig"; sourceTree = "<group>"; };
+		FD728A982B18627E981B5E39 /* Pods-RIDRIntegrationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RIDRIntegrationTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RIDRIntegrationTests/Pods-RIDRIntegrationTests.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B468F60420C8512000BBA20D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6306B9DAF619F8764B8A892 /* Pods_RIDRIntegration.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B468F60E20C8512000BBA20D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B468F61220C8512000BBA20D /* RIDRIntegration.framework in Frameworks */,
+				24B9064C6C8D9EB29AF3DEC9 /* Pods_RIDRIntegrationTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2CEBF41282680649FD4C6A15 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F3F0E8CE94072EEC2FEA1B53 /* Pods-RIDRIntegration.debug.xcconfig */,
+				9CC0640A98905FD0D2E06FE2 /* Pods-RIDRIntegration.release.xcconfig */,
+				5E082FE8D8548F7AEEB22658 /* Pods-RIDRIntegrationTests.debug.xcconfig */,
+				FD728A982B18627E981B5E39 /* Pods-RIDRIntegrationTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B40A4DE020CC1A7500D8F90F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B40A4DDE20CC17D800D8F90F /* Route.swift */,
+				B40A4DE120CC1A8800D8F90F /* Node.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B468F5FE20C8512000BBA20D = {
+			isa = PBXGroup;
+			children = (
+				B468F60A20C8512000BBA20D /* RIDRIntegration */,
+				B468F61520C8512000BBA20D /* RIDRIntegrationTests */,
+				B468F60920C8512000BBA20D /* Products */,
+				2CEBF41282680649FD4C6A15 /* Pods */,
+				D744D83B60B51CEE88F8F1F4 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		B468F60920C8512000BBA20D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B468F60820C8512000BBA20D /* RIDRIntegration.framework */,
+				B468F61120C8512000BBA20D /* RIDRIntegrationTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B468F60A20C8512000BBA20D /* RIDRIntegration */ = {
+			isa = PBXGroup;
+			children = (
+				B40A4DDC20CC080C00D8F90F /* Podfile */,
+				B40A4DDA20CC045500D8F90F /* RIDRIntegration.podspec */,
+				B468F62A20C852DD00BBA20D /* LocationService */,
+				B468F62420C8519700BBA20D /* Network */,
+				B468F62F20C8538900BBA20D /* Setup */,
+				B468F60B20C8512000BBA20D /* RIDRIntegration.h */,
+				B468F60C20C8512000BBA20D /* Info.plist */,
+			);
+			path = RIDRIntegration;
+			sourceTree = "<group>";
+		};
+		B468F61520C8512000BBA20D /* RIDRIntegrationTests */ = {
+			isa = PBXGroup;
+			children = (
+				B468F61620C8512000BBA20D /* RIDRIntegrationTests.swift */,
+				B468F61820C8512000BBA20D /* Info.plist */,
+			);
+			path = RIDRIntegrationTests;
+			sourceTree = "<group>";
+		};
+		B468F62420C8519700BBA20D /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				B468F62920C851DF00BBA20D /* Models */,
+				B468F62520C851AC00BBA20D /* Integration.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		B468F62920C851DF00BBA20D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B468F62A20C852DD00BBA20D /* LocationService */ = {
+			isa = PBXGroup;
+			children = (
+				B40A4DE020CC1A7500D8F90F /* Model */,
+				B468F62B20C8530D00BBA20D /* RIDRLocationManager.swift */,
+				B468F63020C853D000BBA20D /* GeoKeys.swift */,
+				B468F63220C8582D00BBA20D /* Helpers.swift */,
+			);
+			path = LocationService;
+			sourceTree = "<group>";
+		};
+		B468F62F20C8538900BBA20D /* Setup */ = {
+			isa = PBXGroup;
+			children = (
+				B468F62720C851D100BBA20D /* Initialization.swift */,
+				B468F62D20C8538100BBA20D /* RIDR.swift */,
+			);
+			path = Setup;
+			sourceTree = "<group>";
+		};
+		D744D83B60B51CEE88F8F1F4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2D20035F6B90DA66B25A69B9 /* Pods_RIDRIntegration.framework */,
+				1BD7B3196705459522732B5A /* Pods_RIDRIntegrationTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		B468F60520C8512000BBA20D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B468F61920C8512000BBA20D /* RIDRIntegration.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		B468F60720C8512000BBA20D /* RIDRIntegration */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B468F61C20C8512000BBA20D /* Build configuration list for PBXNativeTarget "RIDRIntegration" */;
+			buildPhases = (
+				8F35FCFD082E9600CEF4B168 /* [CP] Check Pods Manifest.lock */,
+				B468F60320C8512000BBA20D /* Sources */,
+				B468F60420C8512000BBA20D /* Frameworks */,
+				B468F60520C8512000BBA20D /* Headers */,
+				B468F60620C8512000BBA20D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RIDRIntegration;
+			productName = RIDRIntegration;
+			productReference = B468F60820C8512000BBA20D /* RIDRIntegration.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		B468F61020C8512000BBA20D /* RIDRIntegrationTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B468F61F20C8512000BBA20D /* Build configuration list for PBXNativeTarget "RIDRIntegrationTests" */;
+			buildPhases = (
+				C282A27CE8864676D399F3E7 /* [CP] Check Pods Manifest.lock */,
+				B468F60D20C8512000BBA20D /* Sources */,
+				B468F60E20C8512000BBA20D /* Frameworks */,
+				B468F60F20C8512000BBA20D /* Resources */,
+				BDEFEE85F58D95BF41BB7008 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B468F61420C8512000BBA20D /* PBXTargetDependency */,
+			);
+			name = RIDRIntegrationTests;
+			productName = RIDRIntegrationTests;
+			productReference = B468F61120C8512000BBA20D /* RIDRIntegrationTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B468F5FF20C8512000BBA20D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = ZATools;
+				TargetAttributes = {
+					B468F60720C8512000BBA20D = {
+						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 0930;
+					};
+					B468F61020C8512000BBA20D = {
+						CreatedOnToolsVersion = 9.3;
+					};
+				};
+			};
+			buildConfigurationList = B468F60220C8512000BBA20D /* Build configuration list for PBXProject "RIDRIntegration" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B468F5FE20C8512000BBA20D;
+			productRefGroup = B468F60920C8512000BBA20D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B468F60720C8512000BBA20D /* RIDRIntegration */,
+				B468F61020C8512000BBA20D /* RIDRIntegrationTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B468F60620C8512000BBA20D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B40A4DDD20CC080C00D8F90F /* Podfile in Resources */,
+				B40A4DDB20CC045500D8F90F /* RIDRIntegration.podspec in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B468F60F20C8512000BBA20D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8F35FCFD082E9600CEF4B168 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RIDRIntegration-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BDEFEE85F58D95BF41BB7008 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-RIDRIntegrationTests/Pods-RIDRIntegrationTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GEOSwift/GEOSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/geos/geos.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GEOSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/geos.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RIDRIntegrationTests/Pods-RIDRIntegrationTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C282A27CE8864676D399F3E7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RIDRIntegrationTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B468F60320C8512000BBA20D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B468F63120C853D000BBA20D /* GeoKeys.swift in Sources */,
+				B468F63320C8582D00BBA20D /* Helpers.swift in Sources */,
+				B468F62620C851AC00BBA20D /* Integration.swift in Sources */,
+				B40A4DE220CC1A8800D8F90F /* Node.swift in Sources */,
+				B468F62C20C8530D00BBA20D /* RIDRLocationManager.swift in Sources */,
+				B468F62E20C8538100BBA20D /* RIDR.swift in Sources */,
+				B40A4DDF20CC17D800D8F90F /* Route.swift in Sources */,
+				B468F62820C851D100BBA20D /* Initialization.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B468F60D20C8512000BBA20D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B468F61720C8512000BBA20D /* RIDRIntegrationTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B468F61420C8512000BBA20D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B468F60720C8512000BBA20D /* RIDRIntegration */;
+			targetProxy = B468F61320C8512000BBA20D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		B468F61A20C8512000BBA20D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		B468F61B20C8512000BBA20D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		B468F61D20C8512000BBA20D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3F0E8CE94072EEC2FEA1B53 /* Pods-RIDRIntegration.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 8B359GT53Q;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = RIDRIntegration/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ridr.RIDRIntegration;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B468F61E20C8512000BBA20D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9CC0640A98905FD0D2E06FE2 /* Pods-RIDRIntegration.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 8B359GT53Q;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = RIDRIntegration/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ridr.RIDRIntegration;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B468F62020C8512000BBA20D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5E082FE8D8548F7AEEB22658 /* Pods-RIDRIntegrationTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8B359GT53Q;
+				INFOPLIST_FILE = RIDRIntegrationTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ridr.RIDRIntegrationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B468F62120C8512000BBA20D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FD728A982B18627E981B5E39 /* Pods-RIDRIntegrationTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8B359GT53Q;
+				INFOPLIST_FILE = RIDRIntegrationTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ridr.RIDRIntegrationTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B468F60220C8512000BBA20D /* Build configuration list for PBXProject "RIDRIntegration" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B468F61A20C8512000BBA20D /* Debug */,
+				B468F61B20C8512000BBA20D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B468F61C20C8512000BBA20D /* Build configuration list for PBXNativeTarget "RIDRIntegration" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B468F61D20C8512000BBA20D /* Debug */,
+				B468F61E20C8512000BBA20D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B468F61F20C8512000BBA20D /* Build configuration list for PBXNativeTarget "RIDRIntegrationTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B468F62020C8512000BBA20D /* Debug */,
+				B468F62120C8512000BBA20D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B468F5FF20C8512000BBA20D /* Project object */;
+}

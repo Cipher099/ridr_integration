@@ -1,0 +1,20 @@
+PODS:
+  - geos (3.5.0)
+  - GEOSwift (2.2.0):
+    - geos (= 3.5.0)
+
+DEPENDENCIES:
+  - GEOSwift
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - geos
+    - GEOSwift
+
+SPEC CHECKSUMS:
+  geos: e96c6ca3f3ce02d20feaa8d90d4af383e11e7198
+  GEOSwift: 8633f4f613d8c010eec90d26a6b7efd15bb98a51
+
+PODFILE CHECKSUM: 08632d6c211658fd210b5e262d829f223341b9bf
+
+COCOAPODS: 1.5.3
