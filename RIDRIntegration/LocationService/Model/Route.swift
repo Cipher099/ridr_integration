@@ -10,6 +10,10 @@ import Foundation
 import CoreLocation
 import GEOSwift
 
+/**
+ Route class adapted from the on the road project
+ https://github.com/Cipher099/on-the-road_android/blob/master/library/src/main/java/com/mapzen/valhalla/Route.kt
+ */
 class Route: NSObject {
     
     private let LOCATION_FUZZY_EQUAL_THRESHOLD_DEGREES: Double = 0.00001
@@ -20,6 +24,7 @@ class Route: NSObject {
     private let LOST_THRESHOLD_METERS: Double = 50
     private let CLOSE_TO_DESTINATION_THRESHOLD_METERS: Double = 20
     private let CLOSE_TO_NEXT_LEG_THRESHOLD_METERS: Double = 5
+    private let MINIMUM_ROUTE_DATA_THRESHOLD: Int = 2
     
     /// The start location of the route
     fileprivate var startLocation: CLLocation
@@ -33,6 +38,14 @@ class Route: NSObject {
     /// The stored data, which is required from instantiation
     fileprivate var routeData: Array<Node>?
     
+    /// Flag for if the route object is valid
+    public var isValid: Bool {
+        guard let routedata = self.routeData else {
+            return false
+        }
+        return routedata.count > MINIMUM_ROUTE_DATA_THRESHOLD
+    }
+    
     /// A flag for if a user has gone off route and to notify observing instances
     public fileprivate(set) var isRouting: Bool = false {
         didSet {
@@ -41,6 +54,8 @@ class Route: NSObject {
             NotificationCenter.default.post(notification)
         }
     }
+    
+    /// Flag variable to indicate if the user is lost
     private var lost = false
     private var currentLeg: Int = 0
     private var beginningRouteLostThresholdMeters: Double?
@@ -56,7 +71,8 @@ class Route: NSObject {
     
     /// Flag for if route has been passed
     private var pastEndOfRoute: Bool {
-        return false
+        guard let routedata = self.routeData else { return true }
+        return currentLeg > routedata.count
     }
     
     private override init() {
@@ -70,6 +86,7 @@ class Route: NSObject {
      */
     public static func createRoute (_ data: [String:AnyObject] ) -> Route {
         let route = Route()
+        route.routeData = Node.createNodeArrayFrom(data)
         return route
     }
     
@@ -78,23 +95,10 @@ class Route: NSObject {
      the routing object
      - parameter route: The line segment which the route will follow
      */
-    public static func createRoute (_ multiLineString: MultiLineString<LineString>) -> Route {
-        let route = Route()
-//        route.routeData = multiLineString
-//        if let startCoords = multiLineString.geometries.first(where: { (item) -> Bool in return true }) {
-//            route.startLocation = CLLocation(latitude: startCoords.middlePoint().coordinate.x,
-//                                                         longitude: startCoords.middlePoint().coordinate.y)
-//        }
-//        
-//        if let endCoords = multiLineString.geometries.reversed().first(where: { (item) -> Bool in return true }) {
-//            route.endLocation = CLLocation(latitude: endCoords.middlePoint().coordinate.x,
-//                                                       longitude: endCoords.middlePoint().coordinate.y)
-//        }
-        
-        return route
-    }
+    
     public static func createRoute (_ nodes: Array<Node>) -> Route {
         let route = Route()
+        route.routeData = nodes
         return route
     }
     /**
@@ -104,7 +108,7 @@ class Route: NSObject {
      - returns: true if the user can be beacon, false otherwise
      */
     func determineBeacon (Locations locations: [CLLocation]) -> Bool {
-        return lost
+        return !self.lost
     }
     
     /**
@@ -121,7 +125,8 @@ class Route: NSObject {
      */
     public func snapToRoute(_ currentLocation: CLLocation) -> CLLocation? {
         self.lastLocation = currentLocation
-        let sizeOfPoly = self.routeData?.count
+        guard let routedata = self.routeData else { return nil }
+        let sizeOfPoly = routedata.count
         
         // we are lost
         if pastEndOfRoute {
@@ -131,28 +136,33 @@ class Route: NSObject {
         
         // snap to destination location
         if (closeToDestination(location: currentLocation)) {
-            let destination = routeData![sizeOfPoly! - 1]
-//            updateDistanceTravelled(destination)
+            let destination = routedata[sizeOfPoly - 1]
             return destination.location
         }
         
         // snap currentNode's location to a location along the route, if we are close
         // to the next leg, go to next leg and then retry snapping
-        let currentNode = routeData![currentLeg]
-        lastLocation = snapTo(currentNode, location: currentLocation.coordinate, degreeOffset: 1)
+        let currentNode = routedata[currentLeg]
+        lastLocation = snapTo(currentNode, Location: currentLocation)
         if (lastLocation == nil) {
-            lastLocation = currentLocation // currentNode.location
+            lastLocation = currentLocation
+            // If the route supplied is too much, look for the closest leg
+            currentLeg = findClosestLeg(currentLocation)
+            if currentLeg == -1 || pastEndOfRoute {
+                lost = true
+                return nil
+            }
         } else {
-            let current = CLLocation(latitude: currentNode.lat, longitude: currentNode.lng)
+            let current = currentNode.location
             if (closeToNextLeg(location: current, legDistance: currentNode.legDistance)) {
                 currentLeg += 1
-//                updateCurrentInstructionIndex()
                 return snapToRoute(currentLocation)
             }
         }
         
+        // What does this actually do?
         if (beginningRouteLostThresholdMeters == nil) {
-            var distanceToFirstLoc = currentLocation.distance(from: (routeData!.first?.location)!)
+            let distanceToFirstLoc = currentLocation.distance(from: (routeData!.first?.location)!)
             beginningRouteLostThresholdMeters = distanceToFirstLoc + LOST_THRESHOLD_METERS
         }
         
@@ -162,16 +172,13 @@ class Route: NSObject {
         // is therefore lost
         let distanceToRoute = currentLocation.distance(from: lastLocation!)
         if distanceToRoute < LOST_THRESHOLD_METERS {
-//            updateDistanceTravelled(currentNode)
             return lastLocation
-        } else if /*totalDistanceTravelled == 0.0 &&*/ currentLeg == 0
-            && distanceToRoute < beginningRouteLostThresholdMeters! {
+        } else if currentLeg == 0 && distanceToRoute < beginningRouteLostThresholdMeters! {
             return currentLocation
         } else {
             lost = true
             return nil
         }
-        return currentLocation
     }
     
     /**
@@ -181,12 +188,10 @@ class Route: NSObject {
      - parameter location:
      - returns: location along route to snap to
      */
-    private func snapTo (_ node: Node, Location location: CLLocation) -> CLLocation {
+    private func snapTo (_ node: Node, Location location: CLLocation) -> CLLocation? {
         // if lat/lng of node and location are same, just update location's bearing to node
         // and snap to it
         if (fuzzyEqual(l1: node.location, l2: location)) {
-//            updateDistanceTravelled(node)
-//            location.bearing = node.bearing.toFloat()
             return CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         }
         
@@ -199,7 +204,7 @@ class Route: NSObject {
             let temp = CLLocation(latitude: (correctedLocation?.coordinate.latitude)!, longitude: (correctedLocation?.coordinate.longitude)!)
             let locationLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         
-            let distance = temp.distance(from: locationLocation) //correctedLocation.distanceTo(location).toDouble()
+            let distance = temp.distance(from: locationLocation)
             // check if results are on the otherside of the globe
             if (round(distance) > CORRECTION_THRESHOLD_METERS) {
                 let tmpNode = Node(node.lat, Lng: node.lng)
@@ -211,14 +216,14 @@ class Route: NSObject {
             }
         }
         
-//        var bearingDelta = node.bearing - node.location.bearingTo(correctedLocation).toDouble()
-//        if (abs(bearingDelta) > 10 && abs(bearingDelta) < 350) {
-//            correctedLocation = node.location
+//        if let snappedLocation = correctedLocation {
+//            let bearingDelta = node.bearing - node.location.bearingToLocationDegrees(destinationLocation: snappedLocation)
+//            if (abs(bearingDelta) > 10 && abs(bearingDelta) < 350) {
+//                correctedLocation = node.location
+//            }
+//            correctedLocation?.bearing = node.location.bearing
 //        }
-        
-//        correctedLocation?.bearing = node.location.bearing
-        
-        return correctedLocation!
+        return correctedLocation
     }
     
     /**
@@ -279,9 +284,6 @@ class Route: NSObject {
         // normalise to -180..+180º
         let lon3 = ((lon1 + dLon13) + 3 * .pi).truncatingRemainder(dividingBy: (2 *  .pi) -  .pi)
         
-//        var loc = CLLocation()
-//        loc.latitude = lat3.radiansToDegrees // toDegrees(lat3)
-//        loc.longitude = lon3.radiansToDegrees // toDegrees(lon3)
         return CLLocation(latitude: lat3.radiansToDegrees, longitude: lon3.radiansToDegrees)
     }
     
@@ -301,6 +303,22 @@ class Route: NSObject {
      */
     private func closeToNextLeg(location: CLLocation, legDistance: Double) -> Bool {
         return location.distance(from: lastLocation!) > (legDistance - CLOSE_TO_NEXT_LEG_THRESHOLD_METERS)
+    }
+    
+    /**
+     If the routedata was acquired and the route which is supposed to be snapped is not correct,
+     try and find the closest point within the threshold to link to in order to continue the
+     data stream
+     
+     - parameters location - the current location of a user
+     - returns: the legs in the routedata which is usable to route
+     */
+    private func findClosestLeg (_ location: CLLocation) -> Int {
+        guard let routedata = self.routeData else { return -1 }
+        guard let index = routedata.index(where: { (node) -> Bool in
+            return node.location.distance(from: location) < CLOSE_TO_NEXT_LEG_THRESHOLD_METERS
+        }) else { return -1 }
+        return index
     }
     
     /**

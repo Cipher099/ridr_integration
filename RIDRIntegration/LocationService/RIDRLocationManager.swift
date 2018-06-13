@@ -38,6 +38,7 @@ public class LocationManager: NSObject {
         if let lastLocation = locManager.location {
             // Acquire and setup geofencing locations
             R.getClosestStations(location: lastLocation.coordinate,
+                                 ResultCount: 10,
                                  stations: { data in
                                     self.removeAllRegions()
                                     let coordinates = CLLocationCoordinate2D()
@@ -61,6 +62,8 @@ extension LocationManager: CLLocationManagerDelegate {
         R.acquireRoute(stationIdentifier: region.identifier, data: { dictionary in
             self.route = Route.createRoute(dictionary)
         })
+        // Just in case start the location manager, can be stopped when if the route data isn't valid
+        manager.startUpdatingLocation()
     }
     
     public func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
@@ -72,14 +75,22 @@ extension LocationManager: CLLocationManagerDelegate {
         // Disable location manager if can't be used as a beacon
         R.sendLocation(location: CLLocation(latitude: circularRegion.center.latitude,
                                             longitude: circularRegion.center.longitude), isEntering: false)
-        // Acquire and setup geofencing locations
+        // Acquire and setup geofencing locations for closest stations
         R.getClosestStations(location: circularRegion.center,
+                             ResultCount: 15,
                              stations: { data in
                                 self.removeAllRegions()
                                 let coordinates = CLLocationCoordinate2D()
                                 let identifier = ""
                                 self.addRegion(location: coordinates, radius: radius, identifier: identifier)
         })
+        // If the variable hasn't been populated
+        guard let routedata = self.route else {
+            manager.stopUpdatingLocation()
+            return
+        }
+        // If the route data is valid to used
+        routedata.isValid ? manager.startUpdatingLocation() : manager.stopUpdatingLocation()
     }
     
     public func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -107,8 +118,10 @@ extension LocationManager: CLLocationManagerDelegate {
     public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let lastLocation = locations.first else { return }
         if let route = self.route, route.determineBeacon(Locations: locations) {
-            let snappedLocation = route.snapToRoute(lastLocation)
-            R.sendLocation(location: snappedLocation!, heading: self.lastHeading)
+            if let snappedLocation = route.snapToRoute(lastLocation) {
+                // Send the snapped location to the server
+                R.sendLocation(location: snappedLocation, heading: self.lastHeading)
+            }
             if UIApplication.shared.applicationState == .active {
                 manager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
                 manager.activityType = CLActivityType.automotiveNavigation
@@ -118,9 +131,10 @@ extension LocationManager: CLLocationManagerDelegate {
                 manager.activityType = CLActivityType.otherNavigation
                 manager.pausesLocationUpdatesAutomatically = false
             }
+        } else {
+            // If the user can no longer assist the service, shut down the location manager
+            manager.stopUpdatingLocation()
         }
-        // Should we really stop location updates though?
-        manager.stopUpdatingLocation()
     }
     
     public func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
@@ -180,7 +194,7 @@ extension LocationManager {
         self.startMonitoring(notification: notification)  // Should probably remove this eventually
     }
     
-    public func removeRegion(identifier: String) {
+    fileprivate func removeRegion(identifier: String) {
         if let selectedRegion = locManager.monitoredRegions.first(where: { (region) -> Bool in
             return region.identifier == identifier
         }) {
@@ -188,7 +202,7 @@ extension LocationManager {
         }
     }
     
-    public func removeAllRegions () {
+    fileprivate func removeAllRegions () {
         locManager.monitoredRegions.forEach { (region) in
             locManager.stopMonitoring(for: region)
         }
