@@ -22,7 +22,7 @@ public class LocationManager: NSObject {
     /// A static value for region detection
     fileprivate let radius: Double = 200
     
-    private var route: Route?
+    fileprivate var route: Route?
     
     override init() {
         super.init()
@@ -35,9 +35,9 @@ public class LocationManager: NSObject {
         }
         locManager.startUpdatingLocation()
         locManager.startUpdatingHeading()
-//        if let lastLocation = locManager.location {
+        if let lastLocation = locManager.location {
             // Acquire and setup geofencing locations
-            R.getClosestStations(location: CLLocationCoordinate2D(latitude: -33.92884892643733, longitude: 18.46780128960495),
+            R.getClosestStations(location: lastLocation.coordinate,
                                  ResultCount: 10,
                                  stations: { data in
                                     self.removeAllRegions()
@@ -48,14 +48,14 @@ public class LocationManager: NSObject {
                                         self.addRegion(location: CLLocationCoordinate2D(latitude: coordinates[0], longitude: coordinates[1]), radius: self.radius, identifier: identifier)
                                     })
             })
-//        }
+        }
     }
 
-    public func setupTestRoute () {
-        R.acquireRoute(stationIdentifier: "random", route: { dictionary in
-            self.route = Route.createRoute(dictionary)
-        })
-    }
+//    public func setupTestRoute () {
+//        R.acquireRoute(stationIdentifier: "random", route: { dictionary in
+//            self.route = Route.createRoute(dictionary)
+//        })
+//    }
 }
 
 extension LocationManager: CLLocationManagerDelegate {
