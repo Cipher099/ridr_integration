@@ -31,7 +31,7 @@ class RIDRIntegrationTests: XCTestCase {
         let expect = expectation(description: "SomeService does stuff and runs the callback closure")
         
         // 2. Exercise the asynchronous code
-        R.acquireRoute(stationIdentifier: "random string", data: { data in
+        R.acquireRoute(stationIdentifier: "random string", route: { data in
             XCTAssert(data.count > 0)
             
             // Don't forget to fulfill the expectation in the async callback
@@ -74,7 +74,7 @@ class RIDRIntegrationTests: XCTestCase {
         let expect = expectation(description: "SomeService does stuff and runs the callback closure")
         
         // 2. Exercise the asynchronous code
-        R.acquireRoute(stationIdentifier: "random string", data: { dictionary in
+        R.acquireRoute(stationIdentifier: "random string", route: { dictionary in
             let route = Route.createRoute([:])
             XCTAssertFalse(route.isValid)
             
@@ -96,7 +96,7 @@ class RIDRIntegrationTests: XCTestCase {
         let expect = expectation(description: "SomeService does stuff and runs the callback closure")
         
         // 2. Exercise the asynchronous code
-        R.acquireRoute(stationIdentifier: "random string", data: { dictionary in
+        R.acquireRoute(stationIdentifier: "random string", route: { dictionary in
             let route = Route.createRoute(dictionary)
             XCTAssert(route.isValid)
             
