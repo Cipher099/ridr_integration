@@ -35,17 +35,26 @@ public class LocationManager: NSObject {
         }
         locManager.startUpdatingLocation()
         locManager.startUpdatingHeading()
-        if let lastLocation = locManager.location {
+//        if let lastLocation = locManager.location {
             // Acquire and setup geofencing locations
-            R.getClosestStations(location: lastLocation.coordinate,
+            R.getClosestStations(location: CLLocationCoordinate2D(latitude: -33.92884892643733, longitude: 18.46780128960495),
                                  ResultCount: 10,
                                  stations: { data in
                                     self.removeAllRegions()
-                                    let coordinates = CLLocationCoordinate2D()
-                                    let identifier = ""
-                                    self.addRegion(location: coordinates, radius: radius, identifier: identifier)
+                                    data.forEach({ (object) in
+                                        guard let dict = object as? [String:AnyObject] else { return }
+                                        guard let obj = dict["object"] as? [String:AnyObject], let coordinates = obj["coordinates"] as? [Double] else { return }
+                                        guard let identifier = object["id"] as? String  else { return }
+                                        self.addRegion(location: CLLocationCoordinate2D(latitude: coordinates[0], longitude: coordinates[1]), radius: self.radius, identifier: identifier)
+                                    })
             })
-        }
+//        }
+    }
+
+    public func setupTestRoute () {
+        R.acquireRoute(stationIdentifier: "random", route: { dictionary in
+            self.route = Route.createRoute(dictionary)
+        })
     }
 }
 
@@ -59,7 +68,7 @@ extension LocationManager: CLLocationManagerDelegate {
         }
         R.sendLocation(location: CLLocation(latitude: circularRegion.center.latitude,
                                             longitude: circularRegion.center.longitude), isEntering: true)
-        R.acquireRoute(stationIdentifier: region.identifier, data: { dictionary in
+        R.acquireRoute(stationIdentifier: region.identifier, route: { dictionary in
             self.route = Route.createRoute(dictionary)
         })
         // Just in case start the location manager, can be stopped when if the route data isn't valid
@@ -80,9 +89,12 @@ extension LocationManager: CLLocationManagerDelegate {
                              ResultCount: 15,
                              stations: { data in
                                 self.removeAllRegions()
-                                let coordinates = CLLocationCoordinate2D()
-                                let identifier = ""
-                                self.addRegion(location: coordinates, radius: radius, identifier: identifier)
+                                data.forEach({ (object) in
+                                    guard let dict = object as? [String:AnyObject] else { return }
+                                    guard let obj = dict["object"] as? [String:AnyObject], let coordinates = obj["coordinates"] as? [Double] else { return }
+                                    guard let identifier = object["id"] as? String  else { return }
+                                    self.addRegion(location: CLLocationCoordinate2D(latitude: coordinates[0], longitude: coordinates[1]), radius: self.radius, identifier: identifier)
+                                })
         })
         // If the variable hasn't been populated
         guard let routedata = self.route else {
@@ -167,9 +179,6 @@ extension LocationManager: CLLocationManagerDelegate {
             locManager.startUpdatingLocation()
             break
         case .denied, .restricted, .notDetermined:
-//            let notifName = NSNotification.Name(rawValue: "permission")
-//            NotificationCenter.default.post(name: notifName, object: nil, userInfo: nil)
-//            Helper.openSettingsForPermissionChange(viewController: )
             break
         }
     }

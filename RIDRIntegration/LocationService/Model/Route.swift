@@ -79,6 +79,7 @@ class Route: NSObject {
         self.startLocation = CLLocation(latitude: 0, longitude: 0)
         self.endLocation = CLLocation(latitude: 0, longitude: 0)
     }
+
     
     /**
      Parses the incoming dictionary and creates a multiline string

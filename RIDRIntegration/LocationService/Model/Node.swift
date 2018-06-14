@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import GEOSwift
 
 open class Node: NSObject {
     
@@ -49,18 +50,19 @@ open class Node: NSObject {
      - returns: An array representation of the route
      */
     static func createNodeArrayFrom(_ dictionary: [String:AnyObject]) -> Array<Node>? {
-//        let containsKey = dictionary.contains { (key: String, value: AnyObject) -> Bool in
-//            return key == "features"
-//        }
-//        if !containsKey { return nil }
-        guard let features = dictionary["features"] as? [AnyObject] else { return nil }
-        guard let geometries = features.first!["geometry"] as? [String:AnyObject] else { return nil }
-        guard let coords = geometries["coordinates"] as? [[Double]] else { return nil }
-        let nodeArray = coords.map({ (item) -> Node in
-            let node = Node(item[0], Lng: item[1])
-            node.legDistance = 5.0 // Default leg distance to 5 for now
-            return node
-        })
+        guard let feature = Features.fromGeoJSONDictionary(dictionary) else {
+            return nil
+        }
+        guard let firstFeature = feature.first,
+            let geometries = firstFeature.geometries else {
+                return nil
+        }
+        guard let lineString = geometries.first as? LineString else {
+            return nil
+        }
+        let nodeArray = lineString.points.map { (coords) -> Node in
+            return Node(coords.x, Lng: coords.y)
+        }
         return nodeArray
     }
 }
