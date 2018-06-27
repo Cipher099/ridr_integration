@@ -12,6 +12,8 @@
 		B40A4DDD20CC080C00D8F90F /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = B40A4DDC20CC080C00D8F90F /* Podfile */; };
 		B40A4DDF20CC17D800D8F90F /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40A4DDE20CC17D800D8F90F /* Route.swift */; };
 		B40A4DE220CC1A8800D8F90F /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40A4DE120CC1A8800D8F90F /* Node.swift */; };
+		B45A189020D1BFCE000DC031 /* geos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B45A188F20D1BFCE000DC031 /* geos.framework */; };
+		B45A189220D1BFCE000DC031 /* GEOSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B45A189120D1BFCE000DC031 /* GEOSwift.framework */; };
 		B468F61220C8512000BBA20D /* RIDRIntegration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B468F60820C8512000BBA20D /* RIDRIntegration.framework */; };
 		B468F61720C8512000BBA20D /* RIDRIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B468F61620C8512000BBA20D /* RIDRIntegrationTests.swift */; };
 		B468F61920C8512000BBA20D /* RIDRIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = B468F60B20C8512000BBA20D /* RIDRIntegration.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -21,7 +23,6 @@
 		B468F62E20C8538100BBA20D /* RIDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = B468F62D20C8538100BBA20D /* RIDR.swift */; };
 		B468F63120C853D000BBA20D /* GeoKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = B468F63020C853D000BBA20D /* GeoKeys.swift */; };
 		B468F63320C8582D00BBA20D /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B468F63220C8582D00BBA20D /* Helpers.swift */; };
-		D6306B9DAF619F8764B8A892 /* Pods_RIDRIntegration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D20035F6B90DA66B25A69B9 /* Pods_RIDRIntegration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,9 @@
 		B40A4DDC20CC080C00D8F90F /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		B40A4DDE20CC17D800D8F90F /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		B40A4DE120CC1A8800D8F90F /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
+		B45A188D20D1BF85000DC031 /* Pods_MyCiti_V2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_MyCiti_V2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B45A188F20D1BFCE000DC031 /* geos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = geos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B45A189120D1BFCE000DC031 /* GEOSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GEOSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B468F60820C8512000BBA20D /* RIDRIntegration.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RIDRIntegration.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B468F60B20C8512000BBA20D /* RIDRIntegration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RIDRIntegration.h; sourceTree = "<group>"; };
 		B468F60C20C8512000BBA20D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -64,7 +68,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6306B9DAF619F8764B8A892 /* Pods_RIDRIntegration.framework in Frameworks */,
+				B45A189020D1BFCE000DC031 /* geos.framework in Frameworks */,
+				B45A189220D1BFCE000DC031 /* GEOSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,6 +187,9 @@
 		D744D83B60B51CEE88F8F1F4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B45A188F20D1BFCE000DC031 /* geos.framework */,
+				B45A189120D1BFCE000DC031 /* GEOSwift.framework */,
+				B45A188D20D1BF85000DC031 /* Pods_MyCiti_V2.framework */,
 				2D20035F6B90DA66B25A69B9 /* Pods_RIDRIntegration.framework */,
 				1BD7B3196705459522732B5A /* Pods_RIDRIntegrationTests.framework */,
 			);

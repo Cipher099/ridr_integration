@@ -57,6 +57,8 @@ class Route: NSObject {
     
     /// Flag variable to indicate if the user is lost
     private var lost = false
+    
+    /// The index of the route currently being taken
     private var currentLeg: Int = 0
     private var beginningRouteLostThresholdMeters: Double?
     
@@ -80,7 +82,6 @@ class Route: NSObject {
         self.endLocation = CLLocation(latitude: 0, longitude: 0)
     }
 
-    
     /**
      Parses the incoming dictionary and creates a multiline string
      to be consumed by the route object
@@ -95,6 +96,7 @@ class Route: NSObject {
      Makes a copy of the incoming multiline string object for use with
      the routing object
      - parameter route: The line segment which the route will follow
+     - returns: The Route object to be used for keeping track of a client
      */
     
     public static func createRoute (_ nodes: Array<Node>) -> Route {
@@ -185,8 +187,8 @@ class Route: NSObject {
     /**
      Returns the closes location along the current route segment that the location should  snap to
      
-     - parameter node:
-     - parameter location:
+     - parameter node: the node the user can be snapped to
+     - parameter location: The location the user is currently at
      - returns: location along route to snap to
      */
     private func snapTo (_ node: Node, Location location: CLLocation) -> CLLocation? {

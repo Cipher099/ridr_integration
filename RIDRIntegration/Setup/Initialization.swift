@@ -8,10 +8,6 @@
 
 import Foundation
 
-protocol NotificationService {
-    func testFunction () -> Void
-}
-
 public class initialization {
     public class func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         let locManager = LocationManager()
