@@ -15,7 +15,7 @@ DESC
   s.source       = { :git => "https://github.com/Cipher099/ridr_integration.git",
     :branch => "master",
     :tag => "#{s.version}" }
-  s.source_files  = "**/*.swift"
+  s.source_files  = "./*.swift"
   s.exclude_files = "RIDRIntegrationTests/**"
   s.swift_version = "3.2"
 
