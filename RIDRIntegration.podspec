@@ -15,11 +15,11 @@ DESC
   s.source       = { :git => "https://github.com/Cipher099/ridr_integration.git",
         :branch => "master",
         :tag => "#{s.version}" }
-  s.source_files  = "RIDRIntegration/*.{swift,h,m}"
-  s.exclude_files = "RIDRIntegrationTests/**"
+  s.source_files  = 'RIDRIntegration/**/*.{h,m,swift}'
+  #s.exclude_files = "RIDRIntegrationTests/**"
   s.swift_version = "3.2"
 
-  s.public_header_files = "RIDRIntegration/*.h"
+  s.public_header_files = "RIDRIntegration/**/*.h"
 
   # s.resource  = "icon.png"
   # s.resources = "Resources/*.png"
@@ -27,5 +27,6 @@ DESC
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
   s.dependency "GEOSwift", "~> 2.2.0"
+  s.requires_arc      = false
 
 end
