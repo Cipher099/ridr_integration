@@ -22,7 +22,7 @@ public class LocationManager: NSObject {
     /// A static value for region detection
     fileprivate let radius: Double = 200
     
-    fileprivate var route: Route?
+    open var route: Route?
     
     override init() {
         super.init()

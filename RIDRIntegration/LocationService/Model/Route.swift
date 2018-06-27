@@ -86,11 +86,11 @@ open class Route: NSObject {
      Parses the incoming dictionary and creates a multiline string
      to be consumed by the route object
      */
-    public static func createRoute (_ data: [String:AnyObject] ) -> Route {
-        let route = Route()
-        route.routeData = Node.createNodeArrayFrom(data)
-        return route
-    }
+//    public static func createRoute (_ data: [String:AnyObject] ) -> Route {
+//        let route = Route()
+//        route.routeData = Node.createNodeArrayFrom(data)
+//        return route
+//    }
     
     /**
      Makes a copy of the incoming multiline string object for use with
