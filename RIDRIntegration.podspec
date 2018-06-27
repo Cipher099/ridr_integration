@@ -13,13 +13,13 @@ DESC
   s.author       = { "Cipher099" => "info@ridr.co.za" }
   s.platform     = :ios, "9.0"
   s.source       = { :git => "https://github.com/Cipher099/ridr_integration.git",
-    :branch => "master",
-    :tag => "#{s.version}" }
-  s.source_files  = "RIDRIntegration/*.swift"
+        :branch => "master",
+        :tag => "#{s.version}" }
+  s.source_files  = "RIDRIntegration/**/*.{swift,h,m}"
   s.exclude_files = "RIDRIntegrationTests/**"
   s.swift_version = "3.2"
 
-  # s.public_header_files = "Classes/**/*.h"
+  #s.public_header_files = "Classes/**/*.h"
 
   # s.resource  = "icon.png"
   # s.resources = "Resources/*.png"
