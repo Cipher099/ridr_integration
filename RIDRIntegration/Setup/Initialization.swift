@@ -9,7 +9,10 @@
 import Foundation
 
 public class initialization {
+    
+    
     public class func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        // strictly for initialization
         let locManager = LocationManager()
         return true
     }

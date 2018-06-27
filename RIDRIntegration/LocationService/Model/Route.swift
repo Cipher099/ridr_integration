@@ -86,11 +86,11 @@ open class Route: NSObject {
      Parses the incoming dictionary and creates a multiline string
      to be consumed by the route object
      */
-//    public static func createRoute (_ data: [String:AnyObject] ) -> Route {
-//        let route = Route()
-//        route.routeData = Node.createNodeArrayFrom(data)
-//        return route
-//    }
+    public static func createRoute (_ data: [String:AnyObject] ) -> Route {
+        let route = Route()
+        route.routeData = Node.createNodeArrayFrom(data)
+        return route
+    }
     
     /**
      Makes a copy of the incoming multiline string object for use with
@@ -99,11 +99,11 @@ open class Route: NSObject {
      - returns: The Route object to be used for keeping track of a client
      */
     
-    public static func createRoute (_ nodes: Array<Node>) -> Route {
-        let route = Route()
-        route.routeData = nodes
-        return route
-    }
+//    public static func createRoute (_ nodes: Array<Node>) -> Route {
+//        let route = Route()
+//        route.routeData = nodes
+//        return route
+//    }
     /**
      From the data provided in the enter region request, determine if the location can
      be sent to the server
