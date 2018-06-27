@@ -14,7 +14,7 @@ import GEOSwift
  Route class adapted from the on the road project
  https://github.com/Cipher099/on-the-road_android/blob/master/library/src/main/java/com/mapzen/valhalla/Route.kt
  */
-class Route: NSObject {
+open class Route: NSObject {
     
     private let LOCATION_FUZZY_EQUAL_THRESHOLD_DEGREES: Double = 0.00001
     private let CLOCKWISE_DEGREES: Double = 90.0
