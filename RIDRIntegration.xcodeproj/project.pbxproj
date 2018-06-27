@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		24B9064C6C8D9EB29AF3DEC9 /* Pods_RIDRIntegrationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BD7B3196705459522732B5A /* Pods_RIDRIntegrationTests.framework */; };
+		A086C50AD9E6F42848C84088 /* Pods_RIDRIntegration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D20035F6B90DA66B25A69B9 /* Pods_RIDRIntegration.framework */; };
 		B40A4DDB20CC045500D8F90F /* RIDRIntegration.podspec in Resources */ = {isa = PBXBuildFile; fileRef = B40A4DDA20CC045500D8F90F /* RIDRIntegration.podspec */; };
 		B40A4DDD20CC080C00D8F90F /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = B40A4DDC20CC080C00D8F90F /* Podfile */; };
 		B40A4DDF20CC17D800D8F90F /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40A4DDE20CC17D800D8F90F /* Route.swift */; };
@@ -70,6 +71,7 @@
 			files = (
 				B45A189020D1BFCE000DC031 /* geos.framework in Frameworks */,
 				B45A189220D1BFCE000DC031 /* GEOSwift.framework in Frameworks */,
+				A086C50AD9E6F42848C84088 /* Pods_RIDRIntegration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,6 +221,7 @@
 				B468F60420C8512000BBA20D /* Frameworks */,
 				B468F60520C8512000BBA20D /* Headers */,
 				B468F60620C8512000BBA20D /* Resources */,
+				B4F70BD920E3B8B400545D93 /* Check POD to confirm validity */,
 			);
 			buildRules = (
 			);
@@ -323,6 +326,20 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		B4F70BD920E3B8B400545D93 /* Check POD to confirm validity */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check POD to confirm validity";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "pob lib lint --no-clean --verbose --allow-warnings\n";
 		};
 		BDEFEE85F58D95BF41BB7008 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

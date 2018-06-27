@@ -15,11 +15,11 @@ DESC
   s.source       = { :git => "https://github.com/Cipher099/ridr_integration.git",
         :branch => "master",
         :tag => "#{s.version}" }
-  s.source_files  = "RIDRIntegration/**/*.{swift,h,m}"
+  s.source_files  = "RIDRIntegration/*.{swift,h,m}"
   s.exclude_files = "RIDRIntegrationTests/**"
   s.swift_version = "3.2"
 
-  #s.public_header_files = "Classes/**/*.h"
+  s.public_header_files = "RIDRIntegration/*.h"
 
   # s.resource  = "icon.png"
   # s.resources = "Resources/*.png"
