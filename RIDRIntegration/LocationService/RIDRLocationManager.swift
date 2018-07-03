@@ -145,6 +145,7 @@ extension LocationManager: CLLocationManagerDelegate {
             }
         } else {
             // If the user can no longer assist the service, shut down the location manager
+            R.sendLocation(location: lastLocation, heading: lastHeading)
             manager.stopUpdatingLocation()
         }
     }

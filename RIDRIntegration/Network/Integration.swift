@@ -12,6 +12,9 @@ import CoreLocation
 public let R = RIDR.instance
 
 open class RIDR: NSObject {
+    private static var BASE_URL: String {
+        return "http://localhost:3000"
+    }
     
     static let instance = RIDR()
     
@@ -22,7 +25,15 @@ open class RIDR: NSObject {
      aware of issues. Also for the purpose of verifying the device on the network
      - parameter deviceIdentifier: the deviceIdentifier to be identified on the network
      */
-    func postRegistration (deviceIdentifier: String) {}
+    func postRegistration (deviceIdentifier: String) {
+        let jsonData: [String : Any] = [
+            "station": deviceIdentifier
+        ]
+        let completeBlock: ((String?, Error?) ->()) = { (info, error) in
+            
+        }
+        createRequest("/data/route", Method: "POST", Data: jsonData, completion: completeBlock)
+    }
     
     /**
      Post the application registration to the server in order to ask for ad hoc
@@ -30,14 +41,30 @@ open class RIDR: NSObject {
      
      - note: this is not for all applications
      */
-    func postDeviceTokenToServer (deviceToken: String) {}
+    func postDeviceTokenToServer (deviceToken: String) {
+        let jsonData: [String : Any] = [
+            "station": deviceToken
+        ]
+        let completeBlock: ((String?, Error?) ->()) = { (info, error) in
+            
+        }
+        createRequest("/data/route", Method: "POST", Data: jsonData, completion: completeBlock)
+    }
     
     /**
      If the user allows send the location information to the server in order to
      assist other user's of a transport mode's location
      @note: Will be shutdown down once the user leaves a station
      */
-    func sendLocation (location: CLLocation, heading: CLHeading?) {}
+    func sendLocation (location: CLLocation, heading: CLHeading?) {
+        let jsonData: [String : Any] = [
+            "station": location
+        ]
+        let completeBlock: ((String?, Error?) ->()) = { (info, error) in
+            
+        }
+        createRequest("/data/route", Method: "POST", Data: jsonData, completion: completeBlock)
+    }
     
     /**
      If the user allows send the location information to the server in order to
@@ -46,7 +73,15 @@ open class RIDR: NSObject {
      - parameter location: The current location of a user when event is triggered
      - parameter isEntering: true if the region is being entered, false otherwise
      */
-    func sendLocation (location: CLLocation, isEntering: Bool) {}
+    func sendLocation (location: CLLocation, isEntering: Bool) {
+        let jsonData: [String : Any] = [
+            "station": location
+        ]
+        let completeBlock: ((String?, Error?) ->()) = { (info, error) in
+            
+        }
+        createRequest("/data/route", Method: "POST", Data: jsonData, completion: completeBlock)
+    }
     
     /**
      Query the server for the route the next 3 vehicles will be taking from the station
@@ -57,42 +92,12 @@ open class RIDR: NSObject {
      */
     func acquireRoute(stationIdentifier: String, route: @escaping ((_ data: [String:AnyObject]) -> ())) {
         let jsonData: [String : Any] = [
-            "station": stationIdentifier
+            "identifier": stationIdentifier // The system-designated identifier
         ]
-        guard let url = URL(string: "http://localhost:3000/data/route") else {
-            route([:])
-            return
+        let completeBlock: ((RouteData?, Error?) ->()) = { (info, error) in
+            
         }
-        var request = URLRequest(url: url)
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("29b98166-da89-4438-93b1-a8a0d9377b12", forHTTPHeaderField: "x-api-key")
-        request.httpMethod = "POST"
-        request.httpBody = try? JSONSerialization.data(withJSONObject: jsonData)
-        
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard error == nil else {
-                print(error!)
-                route([:])
-                return
-            }
-            guard let data = data else {
-                print("Data is empty")
-                route([:])
-                return
-            }
-            do {
-                guard let jsonDictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [String:AnyObject] else {
-                    route([:])
-                    return
-                }
-                route(jsonDictionary)
-            } catch {
-                // Handle error
-                print(error)
-                route([:])
-            }
-        }
-        task.resume()
+        createRequest("/data/route", Method: "POST", Data: jsonData, completion: completeBlock)
     }
     
     /**
@@ -104,50 +109,19 @@ open class RIDR: NSObject {
      - parameter stations: the returned data to the method for consumption
      - note: Need to make this dictionary an object?
      */
-    func getClosestStations (location: CLLocationCoordinate2D, ResultCount resultCount: Int, TransportType type: String? = nil, stations: @escaping (_ data: [AnyObject]) -> ()) {
-        // To be used to only retreive certain transport type
+    func getClosestStations (location: CLLocationCoordinate2D, ResultCount resultCount: Int? = 10, TransportType type: String? = nil, stations: @escaping (_ data: [AnyObject]) -> ()) {
+        // Construct the URL
         var stationType = "brt_station"
         if type != nil { stationType = type! }
-        guard let url = URL(string: "http://localhost:3000/data/closest?resultCount=10") else {
-            stations([])
-            return
-        }
         let jsonData: [String : Any] = [
             "lat": location.latitude,
             "lon": location.longitude,
             "type": stationType
         ]
-        
-        var request = URLRequest(url: url)
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("29b98166-da89-4438-93b1-a8a0d9377b12", forHTTPHeaderField: "x-api-key")
-        request.httpMethod = "POST"
-        request.httpBody = try? JSONSerialization.data(withJSONObject: jsonData)
-        
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard error == nil else {
-                print(error!)
-                stations([])
-                return
-            }
-            guard let data = data else {
-                print("Data is empty")
-                stations([])
-                return
-            }
-            do {
-                guard let jsonDictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [AnyObject] else {
-                    stations([])
-                    return
-                }
-                stations(jsonDictionary)
-            } catch {
-                // Handle error
-                print(error)
-                stations([])
-            }
+        let completeBlock: ((Stations?, Error?) ->()) = { (info, error) in
+            
         }
-        task.resume()
+        createRequest("/data/closest?resultCount=\(resultCount!)", Method: "POST", Data: jsonData, completion: completeBlock)
     }
     
     /**
@@ -155,5 +129,53 @@ open class RIDR: NSObject {
      data and geofencing capability
      - parameter newData: The new data for the sync from server
      */
-    func syncServerData (newData: (_ data: [String:AnyObject]) -> (Bool)) {}
+    func syncServerData (newData: (_ data: [String:AnyObject]) -> (Bool)) {
+        let URL = ""
+        let Data: [String:Any] = [:]
+        let completeBlock: ((String?, Error?) ->()) = { (info, error) in
+            
+        }
+        createRequest(URL, Method: "POST", Data: Data, completion: completeBlock)
+    }
+    
+    /**
+     Creates a request for the provided URL with the method specified and the data to
+     fulfil the request
+     
+     - parameter url: The URL of the request (must include the prefixed /)
+     - parameter method: The request method (optional, defaults to GET)
+     - parameter jsonData: The json data to complete the request
+     - parameter completion: The completion handler for the received data from server
+     */
+    private func createRequest<T:Codable>(_ url: String, Method method: String? = "GET", Data jsonData: [String:Any]?, completion: @escaping ((T?, Error?) ->())) -> Void {
+        guard let url = URL(string: "\(RIDR.BASE_URL)\(url)") else {
+            completion(nil, CustomError.InvalidURL)
+            return
+        }
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("29b98166-da89-4438-93b1-a8a0d9377b12", forHTTPHeaderField: "x-api-key")
+        request.httpMethod = method
+        if let unwrappedJsonData = jsonData {
+            request.httpBody = try? JSONSerialization.data(withJSONObject: unwrappedJsonData)
+        }
+        
+        let task = URLSession.shared.dataTask(with: request) { (data, urlResponse, error) in
+            if error != nil {
+                completion(nil, error)
+            }
+            do {
+                guard let unwrappedData = data else {
+                    //let jsonDictionary = try JSONSerialization.jsonObject(with: unwrappedData, options: []) as? [AnyObject] else {
+                    completion(nil, CustomError.EmptyData)
+                    return
+                }
+                let object = try JSONDecoder().decode(T.self, from: unwrappedData)
+                completion(object, nil)
+            } catch {
+                completion(nil, CustomError.UnhandledError)
+            }
+        }
+        task.resume()
+    }
 }

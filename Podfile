@@ -9,7 +9,6 @@ target 'RIDRIntegration' do
 
   # Pods for RIDRIntegration
   pod 'GEOSwift', :inhibit_warnings => true
-  #pod 'OnTheRoad', :git => 'https://github.com/Cipher099/on-the-road_ios.git', :tag => 'v1.0.1'
 
   target 'RIDRIntegrationTests' do
     inherit! :search_paths

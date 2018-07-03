@@ -24,6 +24,10 @@
 		B468F62E20C8538100BBA20D /* RIDR.swift in Sources */ = {isa = PBXBuildFile; fileRef = B468F62D20C8538100BBA20D /* RIDR.swift */; };
 		B468F63120C853D000BBA20D /* GeoKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = B468F63020C853D000BBA20D /* GeoKeys.swift */; };
 		B468F63320C8582D00BBA20D /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B468F63220C8582D00BBA20D /* Helpers.swift */; };
+		B4BD4F2620EBA77C000FD560 /* ErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BD4F2520EBA77C000FD560 /* ErrorModel.swift */; };
+		B4BD4F2820EBA9F3000FD560 /* Parsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BD4F2720EBA9F3000FD560 /* Parsable.swift */; };
+		B4BD4F2A20EBC36C000FD560 /* RouteData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BD4F2920EBC36C000FD560 /* RouteData.swift */; };
+		B4BD4F2C20EBC39E000FD560 /* Stations.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BD4F2B20EBC39E000FD560 /* Stations.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +64,10 @@
 		B468F62D20C8538100BBA20D /* RIDR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RIDR.swift; sourceTree = "<group>"; };
 		B468F63020C853D000BBA20D /* GeoKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoKeys.swift; sourceTree = "<group>"; };
 		B468F63220C8582D00BBA20D /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		B4BD4F2520EBA77C000FD560 /* ErrorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorModel.swift; sourceTree = "<group>"; };
+		B4BD4F2720EBA9F3000FD560 /* Parsable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parsable.swift; sourceTree = "<group>"; };
+		B4BD4F2920EBC36C000FD560 /* RouteData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteData.swift; sourceTree = "<group>"; };
+		B4BD4F2B20EBC39E000FD560 /* Stations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stations.swift; sourceTree = "<group>"; };
 		F3F0E8CE94072EEC2FEA1B53 /* Pods-RIDRIntegration.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RIDRIntegration.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RIDRIntegration/Pods-RIDRIntegration.debug.xcconfig"; sourceTree = "<group>"; };
 		FD728A982B18627E981B5E39 /* Pods-RIDRIntegrationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RIDRIntegrationTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RIDRIntegrationTests/Pods-RIDRIntegrationTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -162,6 +170,10 @@
 		B468F62920C851DF00BBA20D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B4BD4F2520EBA77C000FD560 /* ErrorModel.swift */,
+				B4BD4F2720EBA9F3000FD560 /* Parsable.swift */,
+				B4BD4F2920EBC36C000FD560 /* RouteData.swift */,
+				B4BD4F2B20EBC39E000FD560 /* Stations.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -339,7 +351,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "pob lib lint --no-clean --verbose --allow-warnings\n";
+			shellScript = "pod lib lint --no-clean --verbose --allow-warnings\n";
 		};
 		BDEFEE85F58D95BF41BB7008 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -388,10 +400,14 @@
 			files = (
 				B468F63120C853D000BBA20D /* GeoKeys.swift in Sources */,
 				B468F63320C8582D00BBA20D /* Helpers.swift in Sources */,
+				B4BD4F2C20EBC39E000FD560 /* Stations.swift in Sources */,
 				B468F62620C851AC00BBA20D /* Integration.swift in Sources */,
 				B40A4DE220CC1A8800D8F90F /* Node.swift in Sources */,
 				B468F62C20C8530D00BBA20D /* RIDRLocationManager.swift in Sources */,
+				B4BD4F2820EBA9F3000FD560 /* Parsable.swift in Sources */,
 				B468F62E20C8538100BBA20D /* RIDR.swift in Sources */,
+				B4BD4F2620EBA77C000FD560 /* ErrorModel.swift in Sources */,
+				B4BD4F2A20EBC36C000FD560 /* RouteData.swift in Sources */,
 				B40A4DDF20CC17D800D8F90F /* Route.swift in Sources */,
 				B468F62820C851D100BBA20D /* Initialization.swift in Sources */,
 			);
